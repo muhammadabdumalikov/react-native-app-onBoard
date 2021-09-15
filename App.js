@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from "react";
+import { View, Text, StyleSheet } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import OnBoard from "./src/components/OnBoard"
+import Home from "./src/components/Home"
+
+const App = () => {
+
+    const [showOnBoard, setShowOnBoard] = useState(true)
+
+    const handlerOnBoardFinish = () => {
+        setShowOnBoard(false)
+    }
+
+    return (
+        <>
+            {showOnBoard && <OnBoard handleDone={handlerOnBoardFinish}/>}
+            {!showOnBoard && <Home/>}
+        </>
+    )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
